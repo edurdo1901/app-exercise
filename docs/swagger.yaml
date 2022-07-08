@@ -18,7 +18,7 @@ definitions:
     properties:
       names:
         description: Names list of names separated by ,
-        example: '"Luis,Camilo,Andres,Laura"'
+        example: Luis,Camilo,Andres,Laura
         type: string
         x-go-name: Names
     required:
@@ -53,12 +53,12 @@ definitions:
     properties:
       x:
         description: StringX first value entered
-        example: '"tokyo"'
+        example: tokyo
         type: string
         x-go-name: StringX
       "y":
         description: StringY second value entered
-        example: '"kyoto"'
+        example: kyoto
         type: string
         x-go-name: StringY
     required:
