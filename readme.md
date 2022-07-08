@@ -8,7 +8,7 @@
 
 ## Documentación API
 
-Los 3 `endpoints` se encuentran documentados en el siguiente archivo [ejercicios amaris swagger](docs/swagger.yaml), tambien se hizo la colleción en postman para ejecutar los request [ejercicios amaris postman](docs/test.json)
+Los 3 `endpoints` se encuentran documentados en el siguiente archivo [ejercicios amaris swagger](docs/swagger.yaml), tambien se hizo, colección en postman para ejecutar los request [ejercicios amaris postman](docs/test.json)
 
 
 ## Requerimientos
