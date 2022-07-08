@@ -1,0 +1,8 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'c:/Users/eduar/Documents/Ejemplos/go/Amaris'
+echo "=> Starting containers and running tests"
+docker-compose up -d --remove-orphans
+go test ./... -covermode=atomic -coverpkg=./...
+docker-compose down -v
+make: Leaving directory 'c:/Users/eduar/Documents/Ejemplos/go/Amaris'
+ 

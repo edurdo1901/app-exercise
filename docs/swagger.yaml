@@ -1,0 +1,188 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  Error:
+    properties:
+      code:
+        description: Code code error.
+        type: string
+        x-go-name: Code
+      message:
+        description: Message message error.
+        type: string
+        x-go-name: Message
+    type: object
+    x-go-package: github.com/exercise/cmd/api/handlers
+  OrderNameRequest:
+    properties:
+      names:
+        description: Names list of names separated by ,
+        example: '"Luis,Camilo,Andres,Laura"'
+        type: string
+        x-go-name: Names
+    required:
+    - names
+    type: object
+    x-go-package: github.com/exercise/cmd/api/handlers
+  OrderNameResponse:
+    properties:
+      count:
+        description: Count number of names
+        example: 4
+        format: int64
+        type: integer
+        x-go-name: Count
+      name:
+        description: Names array names
+        example:
+        - Andres
+        - Camilo
+        - Laura
+        - Luis
+        items:
+          type: string
+        type: array
+        x-go-name: Names
+    required:
+    - name
+    - count
+    type: object
+    x-go-package: github.com/exercise/cmd/api/handlers
+  StringFriendsRequest:
+    properties:
+      x:
+        description: StringX first value entered
+        example: '"tokyo"'
+        type: string
+        x-go-name: StringX
+      "y":
+        description: StringY second value entered
+        example: '"kyoto"'
+        type: string
+        x-go-name: StringY
+    required:
+    - x
+    - "y"
+    type: object
+    x-go-package: github.com/exercise/cmd/api/handlers
+host: app-amaris.prouddune-046dbdf6.eastus.azurecontainerapps.io
+info:
+  description: exercise
+  title: exercise API.
+  version: 1.0.0
+paths:
+  /order/names:
+    post:
+      description: returns sort the names alphabetically and return the number of
+        elements
+      operationId: order
+      parameters:
+      - description: values to organize
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/OrderNameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: list of names organized with the number of items
+          examples:
+            application/json:
+              count: 4
+              name:
+              - Andres
+              - Camilo
+              - Laura
+              - Luis
+          schema:
+            $ref: '#/definitions/OrderNameResponse'
+        "422":
+          description: input data validation error
+          examples:
+            application/json:
+              code: Unprocessable Entity
+              message: 'Key: ''OrderNameRequest.Names'' Error:Field validation for
+                ''Names'' failed on the ''required'' tag'
+          schema:
+            $ref: '#/definitions/Error'
+      summary: sort the names alphabetically and return the number of elements
+      tags:
+      - order
+  /pokemon/{id}:
+    post:
+      description: returns 200 if found pokemon else 404 not found
+      operationId: getpokemon
+      parameters:
+      - description: pokemon identifier
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: pokemon name
+        "404":
+          description: not found pokemon
+          examples:
+            application/json:
+              code: Not Found
+              message: 'client: pokemon not found'
+          schema:
+            $ref: '#/definitions/Error'
+        "422":
+          description: error in identifier pokemon
+          examples:
+            application/json:
+              code: Unprocessable Entity
+              message: invalid syntax
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: unknown error
+          examples:
+            application/json:
+              code: Internal Server Error
+              message: unknown error
+          schema:
+            $ref: '#/definitions/Error'
+      summary: Get the name of the pokemon
+      tags:
+      - getpokemon
+  /string/friends:
+    post:
+      description: returns corresponding validation of whether the strings are friends
+      operationId: stringfriends
+      parameters:
+      - description: values to evaluate
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/StringFriendsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: validation of whether the strings entered are friends
+        "422":
+          description: input data validation error
+          examples:
+            application/json:
+              code: Unprocessable Entity
+              message: 'Key: ''StringFriendsRequest.StringY'' Error:Field validation
+                for ''StringY'' failed on the ''required'' tag'
+          schema:
+            $ref: '#/definitions/Error'
+      summary: check if input data is friendly string
+      tags:
+      - stringfriends
+produces:
+- application/json
+schemes:
+- https
+swagger: "2.0"

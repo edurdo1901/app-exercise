@@ -1,0 +1,1 @@
+{"buildTargets":["fmt","test-cover","test-docker"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
